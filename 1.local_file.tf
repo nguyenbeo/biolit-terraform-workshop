@@ -1,11 +1,3 @@
-terraform {
-  required_version = ">= 1.6.0"
-}
-
-provider "local" {}
-
-provider "random" {}
-
 resource "random_password" "email_random_password" {
   length = 16
   special = true
