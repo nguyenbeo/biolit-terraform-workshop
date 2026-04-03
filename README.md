@@ -45,5 +45,43 @@ Now the setup becomes:
 
 ## Core Concepts
 
-## Hands-on Exercises
+### Providers
+Providers are plugins that know how to talk to a specific platform or system. For example, the local provider ships with Terraform and can manage files on your workstation.
+```
+terraform {
+  required_version = ">= 1.6.0"
+}
 
+provider "local" {}
+```
+
+### Resources
+Resources describe the infrastructure objects you want Terraform to manage. They capture desired state and Terraform converges to it.
+```
+resource "local_file" "hello" {
+  filename = "./resources/hello.txt"
+  content  = "Hello from Terraform!"
+}
+```
+
+### Variables and Outputs
+Variables make configurations reusable and parameterized. Outputs expose useful values after a run—great for piping into other automation.
+```
+variable "name" {
+  description = "Who gets the greeting"
+  type        = string
+  default     = "Biolit"
+}
+
+output "welcome" {
+  value = "Welcome ${var.name}"
+}
+```
+
+### State
+Terraform keeps track of managed objects in `terraform.tfstate`. Always treat the state file as the source of truth and protect it (use remote state backends for teams). Running `terraform plan` compares the state to your configuration to preview changes before `terraform apply` makes them real.
+
+### Modules
+Modules are just directories that bundle variables, resources, and outputs. Use them to share patterns like VPCs or app stacks. Even a single file in this repo (e.g., `1.local_file.tf`) is a root module, and you can call other modules via `module` blocks to standardize infrastructure.
+
+## Hands-on Exercises
