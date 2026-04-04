@@ -85,3 +85,8 @@ Terraform keeps track of managed objects in `terraform.tfstate`. Always treat th
 Modules are just directories that bundle variables, resources, and outputs. Use them to share patterns like VPCs or app stacks. Even a single file in this repo (e.g., `1.local_file.tf`) is a root module, and you can call other modules via `module` blocks to standardize infrastructure.
 
 ## Hands-on Exercises
+
+## Troubleshooting and Best Practices
+
+
+## Wrap up
