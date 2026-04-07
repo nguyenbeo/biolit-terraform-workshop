@@ -1,4 +1,4 @@
 resource "local_file" "config" {
-  filename = "${var.environment}-config.txt"
+  filename = "${path.root}/resources/${var.environment}-config.txt"
   content  = var.message
 }

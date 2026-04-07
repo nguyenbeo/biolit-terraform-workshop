@@ -4,6 +4,6 @@ resource "random_password" "email_random_password" {
 }
 
 resource "local_file" "password_file" {
-  filename = "${path.module}password.txt"
+  filename = "${path.root}/resources/password.txt"
   content  = "Password: ${random_password.email_random_password.result}"
 }
