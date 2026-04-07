@@ -10,3 +10,8 @@ terraform {
 provider "local" {}
 
 provider "random" {}
+
+provider "kubernetes" {
+  config_path    = "~/.kube/config"
+  config_context = "docker-desktop"
+}
