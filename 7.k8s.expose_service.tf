@@ -1,0 +1,26 @@
+# Port forward to access nginx
+# kubectl port-forward svc/nginx-demo -n biolit 80:80
+
+resource "kubernetes_service_v1" "nginx" {
+  metadata {
+    name      = "nginx-demo"
+    namespace = kubernetes_namespace_v1.name.metadata[0].name
+    labels = {
+      app = "nginx"
+    }
+  }
+
+  spec {
+    selector = {
+      app = kubernetes_deployment_v1.nginx.metadata[0].labels.app
+    }
+
+    port {
+      name        = "http"
+      port        = 80
+      target_port = 80
+    }
+
+    type = "ClusterIP"
+  }
+}

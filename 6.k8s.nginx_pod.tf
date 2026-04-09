@@ -1,4 +1,4 @@
-resource "kubernetes_pod_v1" "nginx" {
+resource "kubernetes_deployment_v1" "nginx" {
   metadata {
     name      = "nginx-demo"
     namespace = kubernetes_namespace_v1.name.metadata[0].name
@@ -8,27 +8,45 @@ resource "kubernetes_pod_v1" "nginx" {
   }
 
   spec {
-    container {
-      name  = "nginx"
-      image = "nginx:1.25-alpine"
+    replicas = 2
 
-      port {
-        container_port = 80
-        name           = "http"
-      }
-
-      resources {
-        limits = {
-          cpu    = "250m"
-          memory = "128Mi"
-        }
-        requests = {
-          cpu    = "100m"
-          memory = "64Mi"
-        }
+    selector {
+      match_labels = {
+        app = "nginx"
       }
     }
 
-    restart_policy = "Always"
+    template {
+      metadata {
+        labels = {
+          app = "nginx"
+        }
+      }
+
+      spec {
+        container {
+          name  = "nginx"
+          image = "nginx:1.27.1-alpine"
+
+          port {
+            container_port = 80
+            name           = "http"
+          }
+
+          resources {
+            limits = {
+              cpu    = "250m"
+              memory = "128Mi"
+            }
+            requests = {
+              cpu    = "100m"
+              memory = "64Mi"
+            }
+          }
+        }
+
+        restart_policy = "Always"
+      }
+    }
   }
 }
