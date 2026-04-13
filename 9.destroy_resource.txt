@@ -1,0 +1,7 @@
+# Destroy Everything Exercise
+
+1. Verify which resources are still managed with `terraform state list`.
+2. Run `terraform destroy` (optionally target specific files first if you want to demo partial teardown such as `-target=module.dev_config`).
+3. Review the plan output carefully, then type `yes` to confirm.
+4. Use `kubectl get all -n biolit` and inspect the `resources/` folder to confirm files and Kubernetes objects have been removed.
+5. Re-run `terraform plan` to confirm Terraform reports "No changes. Infrastructure is up-to-date." when the workspace is clean.

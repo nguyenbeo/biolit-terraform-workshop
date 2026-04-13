@@ -1,0 +1,7 @@
+# Kubernetes Drift Detection Exercise
+
+1. Ensure the NGINX deployment already exists (`terraform apply -target=kubernetes_deployment_v1.nginx`).
+2. Manually scale it out-of-band: `kubectl scale deployment/nginx-demo -n biolit --replicas=6`.
+3. Confirm the cluster now runs six replicas with `kubectl get deploy nginx-demo -n biolit`.
+4. Run `terraform plan -target=kubernetes_deployment_v1.nginx` to show Terraform detecting the replica count drift.
+5. Reconcile state either by `terraform apply -target=kubernetes_deployment_v1.nginx` or by scaling the deployment back to the Terraform-defined replica count (`kubectl scale ... --replicas=3`).
