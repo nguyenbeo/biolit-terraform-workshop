@@ -1,3 +1,4 @@
+# https://developer.hashicorp.com/terraform/language/values/variables
 variable "name" {
   description = "Person we greet in workshop demos"
   type        = string

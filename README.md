@@ -112,12 +112,11 @@ Modules are just directories that bundle variables, resources, and outputs. Use 
 
 - Terraform lifecycle in this repo moves from local resources to Kubernetes, so every exercise reinforces init → plan → apply → drift detection → destroy with the same workflow.
 - Desired state wins: when we edit files or scale deployments manually, `terraform plan` exposes drift and `terraform apply` reconciles code and reality.
-- Kubernetes fits naturally once kubeconfig is set—namespaces, deployments, and services behave just like any other Terraform-managed objects.
+- Kubernetes fits naturally once kubeconfig is set namespaces, deployments, and services behave just like any other Terraform-managed objects.
 - Good hygiene (fmt/validate, state inspections, verify-destroy) keeps experiments safe and transfers directly to production teams.
 
 **Q&A Prompts**
 - How would you migrate this workshop to a remote backend (Terraform Cloud, S3 + DynamoDB) so teams can collaborate safely?
-- When is `-target` acceptable, and when should you insist on a full apply to respect the dependency graph?
 - What alerts or policies would catch a manual `kubectl scale` before Terraform runs again?
 - Which module interfaces here (`modules/config_files`) would you document or version before sharing internally?
 - What provider swaps (AWS, Azure) would you make to reuse these exercises in your own environment?

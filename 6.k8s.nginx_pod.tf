@@ -1,3 +1,4 @@
+# https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment_v1
 resource "kubernetes_deployment_v1" "nginx" {
   metadata {
     name      = "nginx-demo"
