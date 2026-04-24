@@ -1,5 +1,6 @@
 # biolit-terraform-workshop
 Terraform Workshop at Biolit
+![QR Code](./assets/github-repo-qr.png)
 
 ## Intro
 
