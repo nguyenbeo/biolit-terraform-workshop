@@ -1,0 +1,5 @@
+resource "github_issue" "workshop" {
+  repository = "biolit-terraform-workshop"
+  title      = "Created from Terraform"
+  body       = "This issue is managed by Terraform."
+}
