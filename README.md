@@ -99,7 +99,8 @@ Modules are just directories that bundle variables, resources, and outputs. Use 
 7. **Deploy the sample NGINX workload** - Apply `6.k8s.nginx_pod.tf` to create the `nginx-demo` deployment. Use `kubectl get deploy -n biolit` and `kubectl describe deploy/nginx-demo -n biolit` to inspect the replica set, pods, container image, and resource requests.
 8. **Expose and test the service** - Apply `7.k8s.expose_service.tf` to provision the `ClusterIP` service, then run `kubectl port-forward svc/nginx-demo -n biolit 8080:80` and curl `http://localhost:8080` to validate traffic reaches the pods. Clean up everything with `terraform destroy` when finished.
 9. **Catch Kubernetes drift** - After the NGINX deployment exists, manually scale it out-of-band with `kubectl scale deployment/nginx-demo -n biolit --replicas=6`. Use `kubectl get deploy nginx-demo -n biolit` to confirm the drift, then run `terraform plan -target=kubernetes_deployment_v1.nginx` to see Terraform propose resetting replicas to the declared count. Finish by either applying the plan or scaling the deployment back yourself so state and cluster realign.
-10. **Tear everything down safely** - List current resources via `terraform state list`, run `terraform destroy`, and review the plan before typing `yes`. Once the destroy completes, double-check with `kubectl get all -n biolit` and inspect the `resources/` folder to verify nothing managed remains, then run a final `terraform plan` to ensure the workspace reports no changes.
+10. **Create a issue on Github** - Apply `9.github_issue.tf` to create issue on this Github repo.
+11. **Tear everything down safely** - List current resources via `terraform state list`, run `terraform destroy`, and review the plan before typing `yes`. Once the destroy completes, double-check with `kubectl get all -n biolit` and inspect the `resources/` folder to verify nothing managed remains, then run a final `terraform plan` to ensure the workspace reports no changes.
 
 ## Troubleshooting and Best Practices
 
@@ -121,6 +122,5 @@ Modules are just directories that bundle variables, resources, and outputs. Use 
 
 **Q&A Prompts**
 - How would you migrate this workshop to a remote backend (Terraform Cloud, S3 + DynamoDB) so teams can collaborate safely?
-- What alerts or policies would catch a manual `kubectl scale` before Terraform runs again?
 - Which module interfaces here (`modules/config_files`) would you document or version before sharing internally?
 - What provider swaps (AWS, Azure) would you make to reuse these exercises in your own environment?
