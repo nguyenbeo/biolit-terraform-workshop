@@ -88,6 +88,20 @@ Terraform keeps track of managed objects in `terraform.tfstate`. Always treat th
 ### Modules
 Modules are just directories that bundle variables, resources, and outputs. Use them to share patterns like VPCs or app stacks. Even a single file in this repo (e.g., `1.local_file.tf`) is a root module, and you can call other modules via `module` blocks to standardize infrastructure.
 
+## Java/.NET analogy
+| Terraform          | Java / .NET Analogy             |
+| ------------------ | ------------------------------- |
+| resource           | object/entity                   |
+| module             | reusable library/class          |
+| variable           | method parameter                |
+| output             | return value                    |
+| state              | ORM persistence tracking        |
+| plan               | dirty checking                  |
+| apply              | transaction commit              |
+| dependency graph   | dependency injection            |
+| declarative config | configuration-based programming |
+
+
 ## Hands-on Exercises
 
 1. **Bootstrap Terraform locally** - Review the configured providers in `0.providers.tf` and run `terraform init` followed by `terraform fmt` + `terraform validate` so you start from a clean, initialized workspace. Skim the generated `.terraform.lock.hcl` to see which plugins (local, random, kubernetes) are pulled in.
