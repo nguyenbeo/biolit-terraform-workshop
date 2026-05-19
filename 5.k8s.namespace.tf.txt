@@ -1,5 +1,7 @@
 
 # https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace_v1
+# A Namespace in Kubernetes is a way to logically separate and organize resources inside the same cluster.
+
 resource "kubernetes_namespace_v1" "name" {
   metadata {
     name = "biolit"

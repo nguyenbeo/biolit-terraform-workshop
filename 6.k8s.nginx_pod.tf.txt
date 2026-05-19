@@ -1,4 +1,7 @@
 # https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment_v1
+# A Pod is the smallest runnable unit in Kubernetes
+# A Deployment manages Pods
+
 resource "kubernetes_deployment_v1" "nginx" {
   metadata {
     name      = "nginx-demo"
